@@ -7,13 +7,13 @@ from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.controllers.database import get_session
-from src.controllers.security import (
+from app.controllers.database import get_session
+from app.controllers.security import (
     get_current_user,
     get_password_hash,
 )
-from src.models.models import User
-from src.models.schemas import (
+from app.models.models import User
+from app.models.schemas import (
     FilterPage,
     Message,
     UserList,

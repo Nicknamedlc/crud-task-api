@@ -1,10 +1,9 @@
 [project]
-name = "CRUD-TASK-API"
+name = "crud-task-api"
 version = "0.1.0"
-description = ""
+description = "Uma API capaz de criar usuários e tarefas"
 authors = [
-    {name = "João",email = "joaovictor.borbatrajano@gmail.com"},
-    {name = "Victório",email = "victoriofaraco@gmail.com"}
+    {name = "João",email = "joaovictor.borbatrajano@gmail.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.13, <4.0"
@@ -23,6 +22,7 @@ dependencies = [
     "aiosqlite (>=0.21.0,<0.22.0)",
     "loguru (>=0.7.3,<0.8.0)",
     "alembic (>=1.16.1,<2.0.0)",
+    "pyjwt (>=2.10.1,<3.0.0)",
 ]
 [tool.coverage.run]
 concurrency = ["thread", "greenlet"]
@@ -58,9 +58,9 @@ asyncio_default_fixture_loop_scope = 'function'
 lint = 'ruff check'
 pre_format = 'ruff check --fix'
 format = 'ruff format'
-run = 'fastapi dev src/app.py'
+run = 'uvicorn --host 0.0.0.0 app.app:app'
 pre_test = 'task lint'
-test = 'pytest -s  --cov=src -vv'
+test = 'pytest -s  --cov=app -vv'
 post_test = 'coverage html'
 
 [build-system]

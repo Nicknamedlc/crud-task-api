@@ -9,11 +9,11 @@ from sqlalchemy import event
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.pool import StaticPool
 
-from src.app import app
-from src.controllers.database import get_session
-from src.controllers.security import get_password_hash
-from src.controllers.settings import Settings
-from src.models.models import User, table_registry
+from app.app import app
+from app.controllers.database import get_session
+from app.controllers.security import get_password_hash
+from app.controllers.settings import Settings
+from app.models.models import User, table_registry
 
 
 class UserFactory(factory.Factory):

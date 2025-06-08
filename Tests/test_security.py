@@ -1,8 +1,8 @@
 from http import HTTPStatus
 
-from jose.jwt import decode
+from jwt import decode
 
-from src.controllers.security import create_access_token
+from app.controllers.security import create_access_token
 
 
 def test_jwt(token, settings):

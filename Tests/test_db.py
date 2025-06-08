@@ -3,7 +3,7 @@ from dataclasses import asdict
 import pytest
 from sqlalchemy import select
 
-from src.models.models import Task, User
+from app.models.models import Task, User
 
 
 @pytest.mark.asyncio
