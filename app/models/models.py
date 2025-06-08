@@ -1,18 +1,9 @@
 from datetime import datetime
-from enum import Enum
 
 from sqlalchemy import ForeignKey, func
 from sqlalchemy.orm import Mapped, mapped_column, registry, relationship
 
 table_registry = registry()
-
-
-class TaskState(str, Enum):
-    criada: str = 'criada'
-    designada: str = 'designada'
-    fazendo: str = 'fazendo'
-    feita: str = 'feita'
-    descartada: str = 'descartada'
 
 
 @table_registry.mapped_as_dataclass
@@ -41,6 +32,6 @@ class Task:
     id: Mapped[int] = mapped_column(init=False, primary_key=True)
     title: Mapped[str]
     description: Mapped[str]
-    state: Mapped[TaskState]
+    state: Mapped[str]
 
     user_id: Mapped[int] = mapped_column(ForeignKey('users.id'))

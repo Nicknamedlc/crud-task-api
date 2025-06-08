@@ -3,7 +3,7 @@ from http import HTTPStatus
 import factory.fuzzy
 import pytest
 
-from app.models.models import Task, TaskState
+from app.models.models import Task
 
 
 class TaskFactory(factory.Factory):
@@ -12,7 +12,7 @@ class TaskFactory(factory.Factory):
 
     title = factory.Faker('text')
     description = factory.Faker('text')
-    state = factory.fuzzy.FuzzyChoice(TaskState)
+    state = factory.Faker('text')
     user_id = 1
 
 
@@ -101,13 +101,13 @@ async def test_list_tasks_filters_combined(session, client, user, token):
             user_id=user.id,
             title='Test combinado',
             description='combina description',
-            state=TaskState.feita,
+            state='feita',
         )
     )
 
     session.add_all(
         TaskFactory.create_batch(
-            3, title='Roxos', description='Purples', state=TaskState.fazendo
+            3, title='Roxos', description='Purples', state='fazendo'
         )
     )
     await session.commit()

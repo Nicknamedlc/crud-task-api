@@ -1,12 +1,10 @@
 from pydantic import BaseModel, ConfigDict, EmailStr
 
-from app.models.models import TaskState
-
 
 class TaskSchema(BaseModel):
     title: str
     description: str
-    state: TaskState
+    state: str
 
 
 class TaskPublic(TaskSchema):
@@ -51,10 +49,10 @@ class FilterPage(BaseModel):
 class FilterTask(FilterPage):
     title: str | None = None
     description: str | None = None
-    state: TaskState | None = None
+    state: str | None = None
 
 
 class TaskUpdate(BaseModel):
     title: str | None = None
     description: str | None = None
-    state: TaskState | None = None
+    state: str | None = None
