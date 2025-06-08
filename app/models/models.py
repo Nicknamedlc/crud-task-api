@@ -8,11 +8,11 @@ table_registry = registry()
 
 
 class TaskState(str, Enum):
-    criada = 'criada'
-    designada = 'designada'
-    fazendo = 'fazendo'
-    feita = 'feita'
-    descartada = 'descartada'
+    criada: str = 'criada'
+    designada: str = 'designada'
+    fazendo: str = 'fazendo'
+    feita: str = 'feita'
+    descartada: str = 'descartada'
 
 
 @table_registry.mapped_as_dataclass

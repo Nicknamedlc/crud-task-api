@@ -20,7 +20,7 @@ if __name__ == '__main__':
         log_level=None,
     )
 
-# Remove existing handlers
+# Remove existing handlers to loguru works
 for handler in logging.root.handlers[:]:
     logging.root.removeHandler(handler)
 
