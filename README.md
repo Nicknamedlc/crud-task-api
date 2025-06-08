@@ -1,27 +1,20 @@
 # **Task Manager API**  
 
-**Trabalho da Disciplina de Engenharia de Software: Arquitetura e Padrões**  
-**Curso:** Ciência da Computação  
-**Professor:** Cassia Nino
-**Aluno:** João e Victorio (VictorioBF)  
-
----
 
 ## **📌 Visão Geral**  
-Este projeto consiste em uma **API RESTful** para um sistema de gestão de tarefas colaborativas, desenvolvida em **Python com FastAPI**, seguindo os princípios de **Arquitetura de Software e Padrões de Projeto**. A aplicação permite que usuários criem, editem, atribuam e concluam tarefas, seguindo uma arquitetura **MVC (Model-View-Controller)** com camadas bem definidas para garantir **modularidade, desacoplamento e testabilidade**.  
+Este projeto consiste em uma **API RESTful** para um sistema de gestão de tarefas colaborativas, desenvolvida em **Python com FastAPI**. A aplicação permite que usuários criem, editem, atribuam e concluam tarefas, seguindo uma arquitetura **MVC (Model-View-Controller)** com camadas bem definidas para garantir **modularidade, desacoplamento e testabilidade**.  
 
 ---
 
 ## **📋 Funcionalidades**  
+✔ **CRUD de Usuários** (Criar, Ler, Atualizar, Deletar)   
 ✔ **CRUD de Tarefas** (Criar, Ler, Atualizar, Deletar)  
-✔ **Atribuição de Tarefas** a usuários  
+✔ **Atribuição de Tarefas**   
 ✔ **Autenticação JWT** (JSON Web Tokens)  
 ✔ **Logs Estruturados** (com Uvicorn e loguru)  
 ✔ **Documentação Automatizada** (Swagger/OpenAPI)  
 ✔ **Testes Automatizados** (Unitários e de Integração, com pytest e ruff)  
-✔ **Formatação de código automático** (formatação por padrões)  
-
-
+✔ **Formatação de código automático** (formatação por padrões com ruff)  
 
 ---
 
@@ -31,8 +24,8 @@ A API foi desenvolvida seguindo o padrão **MVC (Model-View-Controller)**, com a
 | Camada          | Descrição                                                                 | Exemplo de Componentes                          |  
 |----------------|-------------------------------------------------------------------------|-----------------------------------------------|  
 | **Model**      | Gerencia os dados e a lógica de negócio.                                | `Task`, `User`              |  
-| **View**       | Responsável pela apresentação dos dados (JSON na API REST).             | FastAPI `Response`, Schemas          |  
-| **Controller** | Intermediário entre Model e View, lidando com requisições HTTP.        | FastAPI `Router`, `TaskController`            |
+| **View**       | Responsável pela apresentação dos dados (JSON na API REST).             | FastAPI `Response`          |  
+| **Controller** | Intermediário entre Model e View, lidando com requisições HTTP.        | FastAPI `Router`, `Security`, `Settings`            |
 
 ---
 
@@ -64,8 +57,9 @@ classDiagram
         +delete_user()
     }
 
-    UserRoute --> UserSchema : Valida dados
+    UserSchema --> UserRoute  : Valida dados
     UserRoute --> UserModel : Salva/Consulta
+    UserRoute --> UserSchema : Retorna um
     UserModel --> Database : Persistência
 ```
 **Task**
@@ -92,8 +86,9 @@ classDiagram
         +delete_task()
     }
 
-    TaskRoute --> TaskSchema : Valida dados
+    TaskSchema --> TaskRoute : Valida dados
     TaskRoute --> TaskModel : Salva/Consulta
+    TaskRoute --> TaskSchema : Retorna um
     TaskModel --> Database : Persistência
     
     
@@ -147,10 +142,14 @@ erDiagram
 
 ### **Pré-requisitos**  
 - Python 3.13+  
-- SQLite  
+- Docker
 - Poetry (gerenciamento de dependências)  
 
 ### **Instalação**  
+Para a instalação será necessário ter o [docker](https://docs.docker.com/get-started/get-docker/)
+
+
+Com o docker instalado faremos o seguinte:
 ```bash
 # Clone o repositório
 git clone https://github.com/Nicknamedlc/CRUD_API.git
@@ -158,19 +157,17 @@ git clone https://github.com/Nicknamedlc/CRUD_API.git
 # Instale as dependências
 pip install poetry
 
-poetry install CRUD_API
+poetry install crud-task-api
 
-# Execute as migrações (Alembic)
-alembic upgrade head
-
-# Inicie a API
-uvicorn app.main:app --reload --reload-delay 10
+# Execute o comando para criar um docker a partir da dockerfile e da compose.yaml
+docker-compose up --build # Na primeira execução
+docker-compose up # Nas execuções posteriores
 ```
 
 ### **Acesse a Documentação**  
-- **Swagger UI:** `http://localhost:8000/docs` (ao executar o projeto)
+- **Swagger UI:** `http://localhost:8000/docs` (após executar o docker-compose up)
 
----
+
 
 ## **🧪 Testes**  
 ```bash
@@ -182,8 +179,20 @@ pytest tests/integration
 
 # com o uso do poetry
 Poetry run task test 
+
+# Ou
+poetry shell
+task test
 ```
 
+## **</> Autoformatação**  
+```bash
+# Para verificação automática de problemas de formatação no código
+poetry run task lint 
+
+# Para correção automática
+poetry run task format
+```
 ---
 
 ## **📝 Padrões e Boas Práticas**  
@@ -209,10 +218,3 @@ Poetry run task test
 2. Autentique-se primeiro via endpoint `/auth/login`
 
 3. Use os exemplos de requisição fornecidos no Swagger UI
-
----
-
-## **📌 Conclusão**  
-Este projeto foi desenvolvido como parte da disciplina de **Engenharia de Software: Arquitetura e Padrões**, focando em **Arquitetura MVC e Padrões de Projeto**. A estrutura modular e a clara separação de responsabilidades facilitam a manutenção e a escalabilidade da aplicação.
-
----
