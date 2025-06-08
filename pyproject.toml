@@ -1,0 +1,68 @@
+[project]
+name = "CRUD-TASK-API"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "João",email = "joaovictor.borbatrajano@gmail.com"},
+    {name = "Victório",email = "victoriofaraco@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13, <4.0"
+dependencies = [
+    "fastapi[standard] (>=0.115.12,<0.116.0)",
+    "ruff (>=0.11.12,<0.12.0)",
+    "pwdlib[argon2] (>=0.2.1,<0.3.0)",
+    "pydantic (>=2.11.5,<3.0.0)",
+    "pydantic-settings (>=2.9.1,<3.0.0)",
+    "tzdata (>=2025.2,<2026.0)",
+    "pytest (>=8.3.5,<9.0.0)",
+    "httpx (>=0.28.1,<0.29.0)",
+    "cryptography (>=45.0.3,<46.0.0)",
+    "sqlalchemy[asyncio] (>=2.0.41,<3.0.0)",
+    "poetry-core (>=2.0.0,<3.0.0)",
+    "aiosqlite (>=0.21.0,<0.22.0)",
+    "loguru (>=0.7.3,<0.8.0)",
+    "alembic (>=1.16.1,<2.0.0)",
+]
+[tool.coverage.run]
+concurrency = ["thread", "greenlet"]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+pytest-cov = "^6.1.1"
+taskipy = "^1.14.1"
+ruff = "^0.11.12"
+httpx = "^0.28.1"
+pytest-asyncio = "^1.0.0"
+factory-boy = "^3.3.3"
+freezegun = "^1.5.2"
+
+[tool.ruff]
+line-length = 79
+extend-exclude = ['migrations']
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT', 'FAST']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[tool.pytest.ini_options]
+pythonpath = "."
+addopts = '-p no:warnings'
+asyncio_default_fixture_loop_scope = 'function'
+
+[tool.taskipy.tasks]
+lint = 'ruff check'
+pre_format = 'ruff check --fix'
+format = 'ruff format'
+run = 'fastapi dev src/app.py'
+pre_test = 'task lint'
+test = 'pytest -s  --cov=src -vv'
+post_test = 'coverage html'
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
