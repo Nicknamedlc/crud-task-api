@@ -354,6 +354,20 @@ files = [
 markers = {main = "platform_system == \"Windows\" or sys_platform == \"win32\""}
 
 [[package]]
+name = "compose"
+version = "1.6.2"
+description = "The classic ``compose``, with all the Pythonic features."
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "compose-1.6.2-py2.py30-none-any.whl", hash = "sha256:e704e66df7cb8888d6c30e46491f94da80d38b2d45511d138dafaa865386fd7d"},
+    {file = "compose-1.6.2-py35-none-any.whl", hash = "sha256:c8b58b563594199ca40c864bd44e094392eaa1c4f4492ca8591bd54582b1f093"},
+    {file = "compose-1.6.2-py38-none-any.whl", hash = "sha256:5074c7c36bea8d073130398b905410e606a1f75e7f7bd8754f73980028509d83"},
+    {file = "compose-1.6.2.tar.gz", hash = "sha256:c943fa8284c1cb3892925388862e203c9888484e4ce3fd5171506769690d8b4d"},
+]
+
+[[package]]
 name = "coverage"
 version = "7.8.2"
 description = "Code coverage measurement for Python"
@@ -2398,4 +2412,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13, <4.0"
-content-hash = "6d1388341f52b1d54c22ab43a52f423f7db68f7f6bf929c2e2052b472f67ed3d"
+content-hash = "f38b75ebf64bfe26e9d0d1b317d30604d2e3da8f84a13736a59e7e5b5eaba497"
