@@ -30,14 +30,6 @@ dependencies = [
 [tool.coverage.run]
 concurrency = ["thread", "greenlet"]
 
-[tool.poetry]
-name="crud-task-api"
-version="0.1.0"
-description=""
-authors = [ "João Trajano <joaovictor.borbatrajano@gmail.com>" ]
-readme = "README.md"
-packages = [{include ="crud-task-api"}]
-
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.5"
 pytest-cov = "^6.1.1"
