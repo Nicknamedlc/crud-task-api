@@ -3,7 +3,7 @@ name = "crud-task-api"
 version = "0.1.0"
 description = "Uma API capaz de criar usuários e tarefas"
 authors = [
-    {name = "João",email = "joaovictor.borbatrajano@gmail.com"}
+    {name = "João Trajano",email = "joaovictor.borbatrajano@gmail.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.13, <4.0"
@@ -29,6 +29,14 @@ dependencies = [
 ]
 [tool.coverage.run]
 concurrency = ["thread", "greenlet"]
+
+[tool.poetry]
+name="crud-task-api"
+version="0.1.0"
+description=""
+authors = [ "João Trajano <joaovictor.borbatrajano@gmail.com>" ]
+readme = "README.md"
+packages = [{include ="crud-task-api"}]
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.5"
