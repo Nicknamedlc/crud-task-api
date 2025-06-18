@@ -152,7 +152,7 @@ Para a instalação será necessário ter o [docker](https://docs.docker.com/get
 Com o docker instalado faremos o seguinte:
 ```bash
 # Clone o repositório
-git clone https://github.com/Nicknamedlc/CRUD_API.git
+git clone https://github.com/Nicknamedlc/crud-task-api.git
 
 # Instale as dependências
 pip install poetry
